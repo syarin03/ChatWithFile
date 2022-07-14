@@ -7,24 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 
 namespace ChatWithFile
 {
-    public partial class Form1 : Form
+    public partial class SignUpForm : Form
     {
-        public Form1()
+        public SignUpForm()
         {
             InitializeComponent();
-        }
-
-        MySqlConnection conn;
-        MySqlCommand cmd;
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
