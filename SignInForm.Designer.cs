@@ -43,7 +43,9 @@ namespace ChatWithFile
             this.inputID.Name = "inputID";
             this.inputID.Size = new System.Drawing.Size(200, 29);
             this.inputID.TabIndex = 0;
-            this.inputID.UseWaitCursor = true;
+            this.inputID.Tag = "아이디";
+            this.inputID.Enter += new System.EventHandler(this.inputID_Enter);
+            this.inputID.Leave += new System.EventHandler(this.inputID_Leave);
             // 
             // btnSignin
             // 
@@ -51,7 +53,7 @@ namespace ChatWithFile
             this.btnSignin.Location = new System.Drawing.Point(277, 65);
             this.btnSignin.Name = "btnSignin";
             this.btnSignin.Size = new System.Drawing.Size(100, 64);
-            this.btnSignin.TabIndex = 1;
+            this.btnSignin.TabIndex = 2;
             this.btnSignin.Text = "Sign In";
             this.btnSignin.UseVisualStyleBackColor = true;
             // 
@@ -61,7 +63,7 @@ namespace ChatWithFile
             this.btnSignup.Location = new System.Drawing.Point(126, 174);
             this.btnSignup.Name = "btnSignup";
             this.btnSignup.Size = new System.Drawing.Size(100, 30);
-            this.btnSignup.TabIndex = 1;
+            this.btnSignup.TabIndex = 3;
             this.btnSignup.Text = "Sign Up";
             this.btnSignup.UseVisualStyleBackColor = true;
             this.btnSignup.Click += new System.EventHandler(this.btnSignup_Click);
@@ -72,7 +74,7 @@ namespace ChatWithFile
             this.btnFind.Location = new System.Drawing.Point(232, 174);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(100, 30);
-            this.btnFind.TabIndex = 1;
+            this.btnFind.TabIndex = 4;
             this.btnFind.Text = "Find ID/PW";
             this.btnFind.UseVisualStyleBackColor = true;
             // 
@@ -82,8 +84,10 @@ namespace ChatWithFile
             this.inputPW.Location = new System.Drawing.Point(71, 100);
             this.inputPW.Name = "inputPW";
             this.inputPW.Size = new System.Drawing.Size(200, 29);
-            this.inputPW.TabIndex = 0;
-            this.inputPW.UseWaitCursor = true;
+            this.inputPW.TabIndex = 1;
+            this.inputPW.Tag = "비밀번호";
+            this.inputPW.Enter += new System.EventHandler(this.inputPW_Enter);
+            this.inputPW.Leave += new System.EventHandler(this.inputPW_Leave);
             // 
             // SignInForm
             // 
