@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Threading;
+using System.Net;
+using System.Net.Sockets;
+using System.IO;
 
 namespace ChatWithFile
 {
@@ -19,10 +23,23 @@ namespace ChatWithFile
             InitializeComponent();
             set_Text(inputID);
             set_Text(inputPW);
+            String connStr = "Server=10.10.20.46;Port=3306;Uid=admin;Pwd=admin1234;Database=cschatdb;CHARSET=UTF8";
+            conn = new MySqlConnection(connStr);
+            conn.Open();
+            cmd = new MySqlCommand("", conn);
         }
 
-        /*        MySqlConnection conn;
-                MySqlCommand cmd;*/
+        struct LoginUser
+        {
+            public String userID;
+            public String userPW;
+            public String userName;
+            public String userPhone;
+        }
+
+        MySqlConnection conn;
+        MySqlCommand cmd;
+
         void set_Text(TextBox textBox)
         {
             textBox.Text = textBox.Tag.ToString();
@@ -78,24 +95,53 @@ namespace ChatWithFile
             input_Leave(sender, e);
         }
 
-/*        private void button1_Click(object sender, EventArgs e) // 이미지 불러오기
+        private void btnSignin_Click(object sender, EventArgs e)
         {
-            string image_file = string.Empty;
 
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.InitialDirectory = @"D:\";
-
-            if (dialog.ShowDialog() == DialogResult.OK)
+            cmd.CommandText = "select * from users";
+            MySqlDataReader reader;
+            reader = cmd.ExecuteReader();
+            LoginUser user;
+            while (reader.Read())
             {
-                image_file = dialog.FileName;
+                if (reader["userid"].ToString().Equals(inputID.Text))
+                {
+                    Console.WriteLine("same id");
+                    if (reader["userpw"].ToString().Equals(inputPW.Text))
+                    {
+                        Console.WriteLine("same pw");
+                        Console.WriteLine("success");
+                        MessageBox.Show("로그인 성공");
+                        user.userID = reader["userid"].ToString();
+                        user.userPW = reader["userpw"].ToString();
+                        user.userName = reader["username"].ToString();
+                        user.userPhone = reader["userphone"].ToString();
+                        MessageBox.Show(user.userID + user.userPW + user.userName + user.userPhone);
+                        ChatForm chat = new ChatForm(this);
+                        chat.Show();
+                    }
+                }
             }
-            else if (dialog.ShowDialog() == DialogResult.Cancel)
-            {
-                return;
-            }
+        }
 
-            pictureBox1.Image = Bitmap.FromFile(image_file);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-        }*/
+        /*        private void button1_Click(object sender, EventArgs e) // 이미지 불러오기
+                {
+                    string image_file = string.Empty;
+
+                    OpenFileDialog dialog = new OpenFileDialog();
+                    dialog.InitialDirectory = @"D:\";
+
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        image_file = dialog.FileName;
+                    }
+                    else if (dialog.ShowDialog() == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+
+                    pictureBox1.Image = Bitmap.FromFile(image_file);
+                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                }*/
     }
 }

@@ -56,6 +56,7 @@ namespace ChatWithFile
             this.btnSignin.TabIndex = 2;
             this.btnSignin.Text = "Sign In";
             this.btnSignin.UseVisualStyleBackColor = true;
+            this.btnSignin.Click += new System.EventHandler(this.btnSignin_Click);
             // 
             // btnSignup
             // 

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace ChatWithFile
 {
@@ -20,7 +22,17 @@ namespace ChatWithFile
             set_Text(inputChkPW);
             set_Text(inputName);
             set_Text(inputPhone);
+            String connStr = "Server=10.10.20.46;Port=3306;Uid=admin;Pwd=admin1234;Database=cschatdb;CHARSET=UTF8";
+            conn = new MySqlConnection(connStr);
+            conn.Open();
+            cmd = new MySqlCommand("", conn);
+            Console.WriteLine("연결성공");
         }
+
+        MySqlConnection conn;
+        MySqlCommand cmd;
+        MySqlDataReader reader;
+        String userid;
 
         void set_Text(TextBox textBox)
         {
@@ -99,6 +111,46 @@ namespace ChatWithFile
         private void inputPhone_Leave(object sender, EventArgs e)
         {
             input_Leave(sender, e);
+        }
+
+        private void btnChkID_Click(object sender, EventArgs e)
+        {
+            bool chkID = false;
+            cmd.CommandText = "select * from users";
+            reader = cmd.ExecuteReader();
+            if (inputID.Text.Equals(inputID.Tag.ToString()) || inputID.TextLength == 0)
+            {
+                warnID.Text = "빈 칸 ㄴㄴ";
+                reader.Close();
+            }
+            else
+            {
+                while (reader.Read())
+                {
+                    if (reader["userid"].ToString().Equals(inputID.Text))
+                    {
+                        chkID = false;
+                    }
+                    else
+                    {
+                        chkID = true;
+                    }
+                }
+                if (chkID)
+                {
+                    MessageBox.Show("사용 가능 아이디");
+                    userid = inputID.Text;
+                }
+                else
+                {
+                    MessageBox.Show("중복 아이디");
+                }
+            }
+        }
+
+        private void btnSignUp_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
