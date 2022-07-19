@@ -12,7 +12,9 @@ namespace ChatWithFile
 {
     public partial class ChatForm : Form
     {
+
         Form parentForm;
+
         public ChatForm(Form parent)
         {
             InitializeComponent();

@@ -88,6 +88,7 @@ namespace ChatWithFile
             this.inputPW.TabIndex = 1;
             this.inputPW.Tag = "비밀번호";
             this.inputPW.Enter += new System.EventHandler(this.inputPW_Enter);
+            this.inputPW.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputPW_KeyPress);
             this.inputPW.Leave += new System.EventHandler(this.inputPW_Leave);
             // 
             // SignInForm

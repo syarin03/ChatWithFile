@@ -45,7 +45,6 @@ namespace ChatWithFile
             byte[] buffer = new byte[1024];
             string str = string.Empty;
             str = textBox1.Text;
-
             try
             {
                 for (int i = 0; i < 1024; i++) buffer[i] = 0; //서버설명과 같음.
@@ -55,11 +54,11 @@ namespace ChatWithFile
                 net.Flush(); //버퍼비우기
                 textBox1.Clear();
             }
-            catch (SocketException se)
+            catch (SocketException)
             {
                 MessageBox.Show("실패");
             }
-            catch (Exception ee)
+            catch (Exception)
             {
                 MessageBox.Show("실패");
             }

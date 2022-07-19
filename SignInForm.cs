@@ -116,11 +116,18 @@ namespace ChatWithFile
                         user.userPW = reader["userpw"].ToString();
                         user.userName = reader["username"].ToString();
                         user.userPhone = reader["userphone"].ToString();
-                        MessageBox.Show(user.userID + user.userPW + user.userName + user.userPhone);
                         ChatForm chat = new ChatForm(this);
                         chat.Show();
                     }
                 }
+            }
+        }
+
+        private void inputPW_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnSignin_Click(sender, e);
             }
         }
 
