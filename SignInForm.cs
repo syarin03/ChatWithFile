@@ -121,6 +121,7 @@ namespace ChatWithFile
                     }
                 }
             }
+            reader.Close();
         }
 
         private void inputPW_KeyPress(object sender, KeyPressEventArgs e)
