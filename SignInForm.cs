@@ -23,7 +23,7 @@ namespace ChatWithFile
             InitializeComponent();
             set_Text(inputID);
             set_Text(inputPW);
-            String connStr = "Server=10.10.20.46;Port=3306;Uid=admin;Pwd=admin1234;Database=cschatdb;CHARSET=UTF8";
+            String connStr = "Server=10.10.20.46;Port=3306;Uid=user01;Pwd=user01;Database=cschatdb;CHARSET=UTF8";
             conn = new MySqlConnection(connStr);
             conn.Open();
             cmd = new MySqlCommand("", conn);
@@ -98,7 +98,7 @@ namespace ChatWithFile
         private void btnSignin_Click(object sender, EventArgs e)
         {
 
-            cmd.CommandText = "select * from users";
+            cmd.CommandText = "select * from usertbl";
             MySqlDataReader reader;
             reader = cmd.ExecuteReader();
             LoginUser user;

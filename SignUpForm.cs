@@ -22,7 +22,8 @@ namespace ChatWithFile
             set_Text(inputChkPW);
             set_Text(inputName);
             set_Text(inputPhone);
-            String connStr = "Server=10.10.20.46;Port=3306;Uid=admin;Pwd=admin1234;Database=cschatdb;CHARSET=UTF8";
+            set_Text(inputNick);
+            String connStr = "Server=10.10.20.46;Port=3306;Uid=user01;Pwd=user01;Database=cschatdb;CHARSET=UTF8";
             conn = new MySqlConnection(connStr);
             conn.Open();
             cmd = new MySqlCommand("", conn);
@@ -115,8 +116,8 @@ namespace ChatWithFile
 
         private void btnChkID_Click(object sender, EventArgs e)
         {
-            bool chkID = false;
-            cmd.CommandText = "select * from users";
+            bool chkID = true;
+            cmd.CommandText = "select * from usertbl";
             reader = cmd.ExecuteReader();
             if (inputID.Text.Equals(inputID.Tag.ToString()) || inputID.TextLength == 0)
             {
@@ -131,10 +132,6 @@ namespace ChatWithFile
                     {
                         chkID = false;
                     }
-                    else
-                    {
-                        chkID = true;
-                    }
                 }
                 if (chkID)
                 {
@@ -146,11 +143,25 @@ namespace ChatWithFile
                     MessageBox.Show("중복 아이디");
                 }
             }
+            reader.Close();
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-
+            if (inputID.Text.Equals(userid))
+            {
+                if (inputPW.Text.Equals(inputChkPW.Text))
+                {
+                    cmd.CommandText = $"insert into usertbl(userid, userpw, username, userphone, usernick) values('{inputID.Text}', '{inputChkPW.Text}', '{inputName.Text}', '{inputPhone.Text}', '{inputNick.Text}');";
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("가입 성공");
+                    this.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("가입 실패");
+            }
         }
     }
 }

@@ -41,6 +41,7 @@ namespace ChatWithFile
             this.warnChkPW = new System.Windows.Forms.Label();
             this.warnName = new System.Windows.Forms.Label();
             this.warnPhone = new System.Windows.Forms.Label();
+            this.inputNick = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // inputPW
@@ -175,6 +176,18 @@ namespace ChatWithFile
             this.warnPhone.Size = new System.Drawing.Size(0, 13);
             this.warnPhone.TabIndex = 8;
             // 
+            // inputNick
+            // 
+            this.inputNick.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.inputNick.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.inputNick.Location = new System.Drawing.Point(78, 318);
+            this.inputNick.Name = "inputNick";
+            this.inputNick.Size = new System.Drawing.Size(200, 29);
+            this.inputNick.TabIndex = 6;
+            this.inputNick.Tag = "닉네임(선택)";
+            this.inputNick.Enter += new System.EventHandler(this.inputPhone_Enter);
+            this.inputNick.Leave += new System.EventHandler(this.inputPhone_Leave);
+            // 
             // SignUpForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -187,6 +200,7 @@ namespace ChatWithFile
             this.Controls.Add(this.warnID);
             this.Controls.Add(this.btnSignUp);
             this.Controls.Add(this.btnChkID);
+            this.Controls.Add(this.inputNick);
             this.Controls.Add(this.inputPhone);
             this.Controls.Add(this.inputName);
             this.Controls.Add(this.inputChkPW);
@@ -213,5 +227,6 @@ namespace ChatWithFile
         private System.Windows.Forms.Label warnChkPW;
         private System.Windows.Forms.Label warnName;
         private System.Windows.Forms.Label warnPhone;
+        private System.Windows.Forms.TextBox inputNick;
     }
 }
